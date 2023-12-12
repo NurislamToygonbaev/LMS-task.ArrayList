@@ -4,6 +4,7 @@ import service.ReaderService;
 import service.impl.BookServiceImpl;
 import service.impl.LibraryServiceImpl;
 import service.impl.ReaderServiceImpl;
+
 import java.util.Scanner;
 
 public class Main {
@@ -15,12 +16,15 @@ public class Main {
         LibraryService libraryService = new LibraryServiceImpl();
         ReaderService readerService = new ReaderServiceImpl();
 
-        try {
-            LOOP:
-            while (true){
+
+        LOOP:
+        while (true) {
+            try {
                 menu();
-                switch (scanForNumber.nextInt()){
-                    case 0 -> {break LOOP;}
+                switch (scanForNumber.nextInt()) {
+                    case 0 -> {
+                        break LOOP;
+                    }
                     case 1 -> System.out.println(libraryService.saveLibrary());
                     case 2 -> libraryService.getAllLibraries();
                     case 3 -> {
@@ -60,7 +64,7 @@ public class Main {
                         long id = scanner.nextLong();
                         System.out.print("enter book id: ");
                         long idBook = scanner.nextLong();
-                        bookService.deleteBook(id, idBook);
+                        System.out.println(bookService.deleteBook(id, idBook));
                     }
                     case 10 -> {
                         System.out.print("enter id: ");
@@ -90,17 +94,17 @@ public class Main {
                     case 15 -> {
                         System.out.print("enter id: ");
                         long id = scanner.nextLong();
-                        readerService.deleteReaderById(id);
+                        System.out.println(readerService.deleteReaderById(id));
                     }
                     default -> System.out.println("incorrect choice");
                 }
+            } catch (Exception e) {
+                System.out.println("write correct Integer valid");
             }
-        } catch (Exception e){
-            System.out.println("write correct Integer valid");
         }
     }
 
-    private static void menu(){
+    private static void menu() {
         System.out.println("""
                 0.  exit
                 1.  save library

@@ -53,9 +53,9 @@ public class ReaderServiceImpl implements ReaderService {
     @Override
     public void getReaderById(Long id) {
         for (Library library : DataBase.libraries) {
-            for (Book book : library.books) {
-                if (book.getId() == id){
-                    System.out.println(book);
+            for (Reader reader : library.readers) {
+                if (reader.getId() == id){
+                    System.out.println(reader);
                 }
             }
         }
